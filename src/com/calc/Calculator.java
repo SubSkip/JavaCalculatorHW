@@ -1,81 +1,72 @@
 package com.calc;
 
-import java.util.Scanner;
-import java.util.Arrays;
+import java.util.*;
 
 public class Calculator {
 
     private int solution;
-    private static int num1;
-    private static int num2;
-    private char operators;
+    private int[] numbers;
+    private String operator;
 
-    public Calculator() {
-        solution = 0;
+    public int add() {
+        return numbers[0] + numbers[1];
+    }
+
+    public int subtract() {
+        return numbers[0] - numbers[1];
+    }
+
+    public int multiply() {
+        return numbers[0] * numbers[1];
+    }
+
+    public int divide() {
+        return numbers[0] / numbers[1];
+    }
+
+    public int square() {
+        return numbers[0] * numbers[0];
+    }
+
+    public void getNumbers() {
         Scanner operators = new Scanner(System.in);
-        Scanner operands = new Scanner(System.in);
-        // operands.close();
-        // operators.close();
-    }
-
-    public static int add(int num1, int num2) {
-        return num1 + num2;
-    }
-
-    public static int subtract(int num1, int num2) {
-        return num1 - num2;
-    }
-
-    public static int multiply(int num1, int num2) {
-        return num1 * num2;
-    }
-
-    public static int divide(int num1, int num2) {
-        return num1 / num2;
-    }
-
-    public static int square(int num1) {
-        return num1 * num1;
-    }
-
-    public int[] getNumbers() {
-        Scanner operators = new Scanner(System.in);
-        int[] numbers = new int[2];
+        numbers = new int[2];
         System.out.print("\nFirst Number: ");
         numbers[0] = operators.nextInt();
         System.out.print("\nSecond Number: ");
         numbers[1] = operators.nextInt();
-        System.out.println(Arrays.toString(numbers));
-        return numbers;
+        // System.out.println(Arrays.toString(numbers));
+
     }
 
-    public String getOperator() {
+    public void getOperator() {
         Scanner operands = new Scanner(System.in);
-        String operator;
+        // String operator;
         System.out.print("\nOperator (+, -, *, /, sq): ");
         operator = operands.next();
-        return operator;
+        // System.out.println(operator);
+
     }
 
-    public void calc(String operator) {
+    public int calc() {
         switch (operator) {
             case ("+"):
-                add(num1, num2);
+                solution = add();
                 break;
             case ("-"):
-                subtract(num1, num2);
+                solution = subtract();
                 break;
             case ("*"):
-                multiply(num1, num2);
+                solution = multiply();
                 break;
             case ("/"):
-                divide(num1, num2);
+                solution = divide();
                 break;
             case ("sq"):
-                square(num1);
+                solution = square();
                 break;
         }
-
+        return solution;
     }
 
     public static void main(String[] args) {
@@ -83,7 +74,7 @@ public class Calculator {
         Calculator calc = new Calculator();
         calc.getNumbers();
         calc.getOperator();
-        calc.calc("*");
+        System.out.println(calc.calc());
 
     }
 
